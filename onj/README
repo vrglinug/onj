@@ -1,5 +1,14 @@
 INSTALLATION INSTRUCTIONS
-1. Edit header.php and set the variables to appropriate values
-2. Edit setup and set the variables to appropriate values
-3. mysql -u"username" -p"password" < dbinit.sql
-4. sudo ./setup
+1. Place these files in a directory under your web root
+2. Edit header.php and set the variables to appropriate values
+3. Edit setup and set the variables to appropriate values
+4. mysql -u"username" -p"password" < dbinit.sql
+5. sudo ./setup
+
+HOW TO UPDATE PROBLEMS
+1. Problems are stored under the problems/ directory
+2. In this directory, you will find subfolders 1/ 2/ 3/ 4/ 5/, each holding data for the corresponding problem
+3. Under each of these, you will find 3 files:
+	- statement : This contains the html of the problem statement
+	- in : This is the system test input file
+	- out : This is the expected output that the program should produce
