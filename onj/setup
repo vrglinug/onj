@@ -43,6 +43,7 @@ chmod 600 *.cpp 2> /dev/null
 chmod 600 README 2> /dev/null
 
 chown root:root onj
+chmod a+x onj
 chmod a+s onj
 
 chmod 730 -R code
