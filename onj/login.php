@@ -122,12 +122,7 @@ $(document).ready(function(){
 <div id="wrap">
 		
 		<!--header -->
-		<div id="header">			
-				
-			<h1 id="logo-text"><a href="index.php">Programming Contest</a></h1>		
-			<p id="slogan"></p>		
-			
-		</div>
+		<?php include('header.php'); ?>
 		
 		<!-- menu -->	
 		<?php include('menu.php'); ?>

@@ -5,5 +5,5 @@
 
 <p> 
 &copy;2008 <strong>Nicolo Davis and Sarang Bharadwaj</strong> <br/> 
-CSS by <a href="http://www.styleshout.com">styleshout</a> | Tabs by <a href="http://unraveled.com/publications/css_tabs/">CSS Tabs 2.0</a> | Powered by <a href="http://jquery.com">jQuery</a>
+CSS by <a href="http://www.styleshout.com">styleshout</a> | Tabs by <a href="http://unraveled.com/publications/css_tabs/">CSS Tabs 2.0</a> | We use <a href="http://jquery.com">jQuery</a>
 </p>
