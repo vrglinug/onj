@@ -17,7 +17,7 @@
 		$userid = $_SESSION['userid'];
 	}
 
-	include('header.php');
+	include('settings.php');
 	
 	$msg = $_POST['message'];
 	

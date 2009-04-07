@@ -17,7 +17,7 @@
 		$userid = $_SESSION['userid'];
 	}
 
-	include('header.php');
+	include('settings.php');
 
 	$cn = mysql_connect('localhost', $DBUSER ,$DBPASS);
 	mysql_select_db($DBNAME, $cn);

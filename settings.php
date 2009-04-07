@@ -8,7 +8,7 @@
 	//The user name of your database
 	$DBUSER = 'dbusername';
 	//The password of your database
-	$DBPASS = 'dbpass';
+	$DBPASS = 'dbpassword';
 	//The name of the database
 	$DBNAME = 'judge';
 
