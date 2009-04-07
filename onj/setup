@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#Your username
+USER=username
+
+#The username under which apache runs
+WEBUSER=www-data
+
+#Your web root directory
+WEBROOT=/var/www/html/
+
+if [ $USER = $WEBUSER ]; then
+	echo 'Warning! USER and WEBUSER are set to the same value! This is a major security vulnerability!';
+fi
+
+cd $WEBROOT
+chown $USER:$WEBUSER -R judge
+
+chmod 750 judge
+cd $WEBROOT/judge
+
+rm *~ 2> /dev/null
+rm statistics/*~ 2> /dev/null
+rm problems/*/*~ 2> /dev/null
+
+chmod 700 dbinit.sql
+chmod 640 *.php statistics/*.php
+chmod 640 *.js 2> /dev/null
+chmod 600 *.cpp 2> /dev/null
+chmod 600 README 2> /dev/null
+
+chown root:root onj
+chmod a+s onj
+
+chmod 730 -R code
+chmod 750 images statistics
+chmod 750 -R problems
+chmod 600 problems/*/*
+chmod 640 problems/*/statement
