@@ -13,6 +13,15 @@ WEBROOT=/home/username/www/html/
 #Use . in case the the judge is placed directly under the web root directory
 DIR=onj
 
+#Your database username
+DBUSER=dbuser
+
+#Your database password
+DBPASS=dbpass
+
+#Database name
+DBNAME=onj
+
 if [ $USER = $WEBUSER ]; then
 	echo 'Warning! USER and WEBUSER are set to the same value! This is a major security vulnerability!';
 fi
@@ -41,3 +50,15 @@ chmod 750 images statistics
 chmod 750 -R problems
 chmod 600 problems/*/*
 chmod 640 problems/*/statement
+
+sed -i "s/dbuser/$DBUSER/g" settings.php
+sed -i "s/dbpass/$DBPASS/g" settings.php
+sed -i "s/dbname/$DBNAME/g" settings.php dbinit.sql
+
+if [ $DBPASS ]; then
+	echo "drop database $DBNAME" | mysql -u"$DBUSER" -p"$DBPASS" 2> /dev/null
+	mysql -u"$DBUSER" -p"$DBPASS" < dbinit.sql
+else
+	echo "drop database $DBNAME" | mysql -u"$DBUSER" 2> /dev/null
+	mysql -u"$DBUSER" < dbinit.sql
+fi

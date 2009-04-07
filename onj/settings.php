@@ -6,11 +6,11 @@
 */
 
 	//The user name of your database
-	$DBUSER = 'dbusername';
+	$DBUSER = 'dbuser';
 	//The password of your database
-	$DBPASS = 'dbpassword';
+	$DBPASS = 'dbpass';
 	//The name of the database
-	$DBNAME = 'judge';
+	$DBNAME = 'dbname';
 
 	//The point values of the problems
 	//Set it to the values you wish to use

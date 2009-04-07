@@ -1,9 +1,7 @@
 INSTALLATION INSTRUCTIONS
 1. Place these files in a directory under your web root
-2. Edit settings.php and set the variables to appropriate values
-3. Edit setup and set the variables to appropriate values
-4. mysql -u"username" -p"password" < dbinit.sql
-5. sudo ./setup
+2. Edit setup and set the variables to appropriate values
+3. sudo ./setup
 
 HOW TO UPDATE PROBLEMS
 1. Problems are stored under the problems/ directory

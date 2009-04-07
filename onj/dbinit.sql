@@ -1,5 +1,5 @@
-create database judge;
-use judge;
+create database dbname;
+use dbname;
 
 create table users
 (
