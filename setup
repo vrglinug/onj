@@ -7,17 +7,21 @@ USER=username
 WEBUSER=www-data
 
 #Your web root directory
-WEBROOT=/var/www/html/
+WEBROOT=/home/username/www/html/
+
+#Your contest directory
+#Use . in case the the judge is placed directly under the web root directory
+DIR=onj
 
 if [ $USER = $WEBUSER ]; then
 	echo 'Warning! USER and WEBUSER are set to the same value! This is a major security vulnerability!';
 fi
 
 cd $WEBROOT
-chown $USER:$WEBUSER -R judge
+chown $USER:$WEBUSER -R $DIR
 
-chmod 750 judge
-cd $WEBROOT/judge
+chmod 750 $DIR
+cd $WEBROOT/$DIR
 
 rm *~ 2> /dev/null
 rm statistics/*~ 2> /dev/null
