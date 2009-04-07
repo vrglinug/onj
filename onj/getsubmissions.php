@@ -17,7 +17,7 @@
 		$userid = $_SESSION['userid'];
 	}
 
-	include('header.php');
+	include('settings.php');
 
 	print '<tr><th>Id</th><th>Time</th><th>User</th><th>Problem</th><th>Status</th></tr>';
 
