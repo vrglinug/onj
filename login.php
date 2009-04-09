@@ -185,6 +185,13 @@ else
 			$firstname = $_POST['firstname'];
 			$lastname = $_POST['lastname'];
 			$college = $_POST['college'];
+
+			//Filter out html entities to prevent XSS attacks
+			$username = htmlentities($username);
+			$password = htmlentities($password);
+			$firstname = htmlentities($firstname);
+			$lastname = htmlentities($lastname);
+			$college = htmlentities($college);
 			
 			if(strlen($username) > 1)
 				$query = "insert into `users` (username,password,firstname,lastname,college) values('$username', '$password', '$firstname', '$lastname', '$college')";
