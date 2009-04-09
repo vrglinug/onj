@@ -10,6 +10,7 @@
 	unset($_SESSION['username']);
 	unset($_SESSION['password']);
 	unset($_SESSION['userid']);
+	unset($_SESSION['admin']);
 	unset($_SESSION['isloggedin']);
 	
 	echo "<meta http-equiv='Refresh' content='0; URL=login.php'/>";

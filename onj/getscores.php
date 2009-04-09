@@ -23,10 +23,11 @@
 	mysql_select_db($DBNAME, $cn);
 
 	//Calculate the submission stats of each user
-	$result = mysql_query("select username, problemid, status from users, submissions where users.id = submissions.userid");
+	$result = mysql_query("select username, problemid, status from users, submissions where users.id = submissions.userid order by time desc");
 	while($row = mysql_fetch_array($result))
 	{
-		$success[ "$row[username]" ][ $row[problemid] ] = $row[status];
+		if(!isset($success[ "$row[username]" ][ $row[problemid] ]))
+			$success[ "$row[username]" ][ $row[problemid ] ] = $row[status];
 	}
 
 	//Get scores of users
@@ -57,8 +58,16 @@
 				{
 					if($success[ "$row[username]" ][$i] == '0')
 						print "<td><img src='images/checkmark.png' style='border:none; background:none;'/></td>";
+					else if($success[ "$row[username]" ][$i] == '1')
+						print "<td><img src='images/page.gif' style='border:none; background:none; margin-top: 3px;'/></td>";
+					else if($success[ "$row[username]" ][$i] == '2')
+						print "<td><img src='images/wrongmark.gif' style='border:none; background:none; margin-top:5px;'/></td>";
+					else if($success[ "$row[username]" ][$i] == '3')
+						print "<td><img src='images/clock.gif' style='border:none; background:none; margin-top:4px;'/></td>";
 					else
+					{
 						print "<td style='width:25px;'>--</td>";
+					}
 				}
 				print "<td>$row[score]</td></tr>";
 				$pos++;
