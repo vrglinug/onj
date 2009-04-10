@@ -34,10 +34,30 @@ include('settings.php');
 
 <title>Programming Contest</title>
 
+<!--[if IE]><script language="javascript" type="text/javascript" src="../excanvas.pack.js"></script><![endif]-->
 <script type="text/javascript" src="jquery-1.3.1.js"></script>
+<script type="text/javascript" src="flot/jquery.flot.js"></script>
 <?php include('timer.php'); ?>
 <script type="text/javascript">
 <!--
+
+function getTimeline()
+{
+	$.post("gettimeline.php", {}, function(data){
+
+			$.plot($("#graph"), data,
+				{
+					lines: { show: true },
+					points: { show: true },
+					xaxis: { mode: "time" },
+					yaxis: { ticks: 10 },
+					grid: { backgroundColor: "#ffffff" },
+					legend: { backgroundOpacity: 0.5, backgroundColor: "#fffaff"}
+				}
+			);
+
+		}, "json");
+}
 
 $(document).ready(
 	function()
@@ -48,12 +68,15 @@ $(document).ready(
 		getDetails();
 		getProblemStats();
 		getAnnouncements();
+		getTimeline();
+
 		setInterval("dispTime()", 1000);  
 		setInterval("getLeaders()", getLeaderInterval);  
 		setInterval("getDetails()", getLeaderInterval);  
 		setInterval("getLeader()", getLeaderInterval);  
 		setInterval("getProblemStats()", getLeaderInterval);  
 		setInterval("getAnnouncements()", getLeaderInterval);  
+		setInterval("getTimeline()", getLeaderInterval);  
 	} 
 );
 
@@ -94,6 +117,9 @@ $(document).ready(
 						<span id="leader"></span>
 
 						<span id="announcements"></span>
+
+						<h2>Contest timeline</h2>
+						<div id="graph" style="width:500px;height:250px;"></div>
 
 						<h2>Submission Statistics</h2>
 						<span id="problemstats"></span>
