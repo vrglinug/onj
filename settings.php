@@ -6,11 +6,11 @@
 */
 
 	//The user name of your database
-	$DBUSER = 'dbuser';
+	$DBUSER = 'nicolodavis';
 	//The password of your database
-	$DBPASS = 'dbpass';
+	$DBPASS = '';
 	//The name of the database
-	$DBNAME = 'dbname';
+	$DBNAME = 'onj';
 
 	//The point values of the problems
 	//Set it to the values you wish to use
@@ -18,7 +18,7 @@
 	$points = array(10,25,25,25,50);
 
 	//Start time of the contest in the format 'YYYY-MM-DD HH:MM:SS'
-	$startTime = date_create('2009-03-30 16:00:00');
+	$startTime = date_create('2009-04-10 23:00:00');
 
 	//End time of the contest 'YYYY-MM-DD HH:MM:SS'
 	$endTime = date_create('2009-04-30 17:00:00');
