@@ -47,6 +47,13 @@ function getSubmissions()
 	  });
 }
 
+function getAnnouncements()
+{
+	$.get("getannouncements.php", function(data){
+	  $("#announcements").html(data);
+	  });
+}
+
 function getProblemStats()
 {
 	$.get("statistics/getproblemstats.php", function(data){

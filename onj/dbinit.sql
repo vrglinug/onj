@@ -40,5 +40,13 @@ create table chat
 	constraint FK2 foreign key(userid) references users(id) on delete cascade on update cascade
 );
 
+create table announcements
+(
+	id int auto_increment,
+	time int,
+	msg varchar(500),
+	primary key(id)
+);
+
 -- Create admins (rank==1 means admin)
 insert into users(username, password, rank) values('admin', 'onj', 1);

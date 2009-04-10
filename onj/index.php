@@ -47,11 +47,13 @@ $(document).ready(
 		getLeaders();
 		getDetails();
 		getProblemStats();
+		getAnnouncements();
 		setInterval("dispTime()", 1000);  
 		setInterval("getLeaders()", getLeaderInterval);  
 		setInterval("getDetails()", getLeaderInterval);  
 		setInterval("getLeader()", getLeaderInterval);  
 		setInterval("getProblemStats()", getLeaderInterval);  
+		setInterval("getAnnouncements()", getLeaderInterval);  
 	} 
 );
 
@@ -90,6 +92,8 @@ $(document).ready(
 							
 						echo <<<EOHTML
 						<span id="leader"></span>
+
+						<span id="announcements"></span>
 
 						<h2>Submission Statistics</h2>
 						<span id="problemstats"></span>
