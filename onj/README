@@ -10,3 +10,6 @@ HOW TO UPDATE PROBLEMS
 	- statement : This contains the html of the problem statement
 	- in : This is the system test input file
 	- out : This is the expected output that the program should produce
+
+HOW TO CHANGE SETTINGS
+1. Play around with settings.php

@@ -1,23 +1,23 @@
 #!/bin/bash
 
 #Your username
-USER=username
+USER=nicolodavis
 
 #The username under which apache runs
 WEBUSER=www-data
 
 #Your web root directory
-WEBROOT=/home/username/www/html/
+WEBROOT=/home/nicolodavis/www/html/
 
 #Your contest directory
 #Use . in case the the judge is placed directly under the web root directory
 DIR=onj
 
 #Your database username
-DBUSER=dbuser
+DBUSER=nicolodavis
 
 #Your database password
-DBPASS=dbpass
+DBPASS=
 
 #Database name
 DBNAME=onj
