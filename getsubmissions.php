@@ -65,4 +65,6 @@
 		}
 	}
 
+	mysql_close($cn);
+
 ?>				
