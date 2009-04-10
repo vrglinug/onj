@@ -1,5 +1,5 @@
-create database onj;
-use onj;
+create database dbname;
+use dbname;
 
 create table users
 (
