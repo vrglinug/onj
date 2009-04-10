@@ -4,6 +4,8 @@
 */
 
 #include <iostream>
+#include <vector>
+#include <regex.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <cstdlib>
@@ -54,6 +56,9 @@ string getext(string s)
 	return "";
 }
 
+bool match(const char *pattern, const char *filename);
+bool checkForSystemCalls(const char *filename);
+
 int main(int argc,char *argv[])
 {
 	string ext = getext(argv[1]);
@@ -67,6 +72,9 @@ int main(int argc,char *argv[])
 
 		return ILLEGAL_FILE;
 	}
+
+	if(checkForSystemCalls(argv[1]))
+		return COMPILE_ERROR;
 
 	string flag=" ";
 	if(ext.size() == 1)
@@ -153,4 +161,85 @@ int main(int argc,char *argv[])
 		cerr<<err[exit_status]<<endl;
 	#endif
 	return exit_status;	
+}
+
+bool checkForSystemCalls(const char *filename)
+{
+	vector<string> functions, keywords;
+
+	//Read the banned functions from the file
+	ifstream func("banned_functions");
+	while(true)
+	{
+		string s;
+		func>>s;
+		if(func.eof()) break;
+		
+		functions.push_back(s);
+	}
+	func.close();
+
+	//Read the banned keywords from the file
+	ifstream key("banned_keywords");
+	while(true)
+	{
+		string s;
+		key>>s;
+		if(key.eof()) break;
+		
+		keywords.push_back(s);
+	}
+	key.close();
+
+	//Build regex pattern
+	string pattern = "([^a-zA-Z0-9_\\.>]+(";
+	for(int i=0 ; i<keywords.size() ; i++)
+	{
+		if(i>0) pattern += "|";
+		pattern += keywords[i];
+	}
+	pattern += ")[^a-zA-Z0-9_\\.]+)";
+
+	pattern += "|";
+	
+	pattern += "([^a-zA-Z0-9_\\.>]+(";
+	for(int i=0 ; i<functions.size() ; i++)
+	{
+		if(i>0) pattern += "|";
+		pattern += functions[i];
+	}
+	pattern += ")[ \t\n\r]*\\()";
+
+	//cout<<pattern<<endl;
+	return match(pattern.c_str(), filename);	
+}
+
+bool match(const char *pattern, const char *filename)
+{
+	//This does not behave exactly like grep
+	//The whole file is treated as a single line,
+	//so ^ and $ will not work in the regular expression
+	
+	regex_t reg;
+	regcomp(&reg, pattern, REG_EXTENDED|REG_NOTBOL|REG_NOTEOL);
+
+	regmatch_t matches[1];
+
+	ifstream in(filename);
+	if(!in) return false;
+
+	in.seekg(0, ios::end);
+	int length = in.tellg();
+	in.seekg(0, ios::beg);
+
+	char *buffer = new char[length+1];
+	in.read(buffer, length);
+	buffer[length] = '\0';
+
+	if(regexec(&reg, buffer, 1, matches, 0) == 0)
+		return true;
+
+	in.close();
+
+	return false;
 }
