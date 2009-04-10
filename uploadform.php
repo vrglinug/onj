@@ -52,31 +52,6 @@
 
 	mysql_close($cn);
 
-	if($status != 0)
-	{
-		/*
-		print '<div id="status" class=';
-		if($statString[$status] == 'Accepted') print '"success"';
-		else print '"error"';
-		print 'style="display: one">';
-		print "$statString[$status]</div>";
-		*/
-	}
-
-	/*print '<div class="submitbox" style="display: one" ';
-
-	print 'id=';
-	switch($status)
-	{
-		case 1: print '"accepted"'; break;
-		case 2: print '"compile"'; break;
-		case 3: print '"wrong"'; break;
-		case 4: print '"time"'; break;
-		case 5: print '"invalid"'; break;
-	}
-	print '>';
-	*/
-
 	print "<table style='margin-top: 20px; border: 0;'><tr>";
 
 	if($statString[$status] != 'Accepted') 
@@ -104,8 +79,4 @@
 	print "<strong>$statString[$status]</strong></td>";
 
 	print "</tr></table>";
-
-	//print '</div>';
-
-	//print $statString[$status];
 ?>
