@@ -137,6 +137,13 @@ input.chatform {
 	border: 1px solid #AAAAAA;
 }
 
+input.announcementform {
+	margin: 5px 0;
+	width: 526px;
+	overflow: auto;
+	border: 1px solid #AAAAAA;
+}
+
 /*--Submit box---------------------------*/
 td.submitform {
 	text-align: center;
@@ -439,6 +446,11 @@ body.menu7 #menu ul li#menu7 a,
 body.menu8 #menu ul li#menu8 a,
 body.menu9 #menu ul li#menu9 a,
 body.menu10 #menu ul li#menu10 a
+body.menu11 #menu ul li#menu11 a
+body.menu12 #menu ul li#menu12 a
+body.menu13 #menu ul li#menu13 a
+body.menu14 #menu ul li#menu14 a
+body.menu15 #menu ul li#menu15 a
 {	
 	color: #D4E59F;
 }

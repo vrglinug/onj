@@ -22,7 +22,7 @@
 	$cn = mysql_connect('localhost', $DBUSER , $DBPASS);
 	mysql_select_db($DBNAME, $cn);
 
-	$result = mysql_query("select * from announcements order by time desc");
+	$result = mysql_query("select * from announcements order by time asc");
 
 	if(mysql_num_rows($result) >= 1)
 	{
@@ -30,7 +30,10 @@
 
 		print '<code>';
 		while($row = mysql_fetch_array($result))
-			print $row[msg] . "<br/>";
+		{
+			$t = strftime('%H:%M:%S',$row[time]);
+			print "<strong>($t) </strong>$row[msg]<br/>";
+		}
 		print '</code>';
 	}
 
