@@ -50,7 +50,7 @@ function getTimeline()
 					lines: { show: true },
 					points: { show: true },
 					xaxis: { mode: "time" },
-					yaxis: { ticks: 10 },
+					yaxis: { ticks: 10, min: 0, max: 150 },
 					grid: { backgroundColor: "#ffffff" },
 					legend: { backgroundOpacity: 0.5, backgroundColor: "#fffaff"}
 				}
