@@ -42,8 +42,11 @@
 		{
 			array_push($scores,0);
 			array_push($data,array('label'=>$pos[$i], 'data'=>array()));
+
+			$diff = ((int)strtotime($startTime->format(DATE_ATOM))*1000);
 			$tuple = array(0,0);	
-			//array_push($data[$i]['data'], $tuple);
+			$tuple[0] = (int)$diff;
+			array_push($data[$i]['data'], $tuple);
 		}
 
 		while($row = mysql_fetch_array($result))
