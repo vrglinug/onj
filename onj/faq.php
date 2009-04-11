@@ -93,18 +93,28 @@ $(document).ready(function(){
 				<h2>What happens when you submit</h2>
 				
 				<ul>
-					<li>Your file will be compiled</li>
-					<li>The executable produced will be run, with an input file being fed to its standard input (when you use scanf or cin, you are reading from the standard input)</li>
-					<li>The output produced is saved</li>
+					<li>Your file is compiled.</li>
+					<li>The executable produced is run, with an input file being fed to its standard input (when you use scanf or cin, you are reading from the standard input).</li>
+					<li>The output produced is saved.</li>
 					<li>The output is compared with the expected output. If they match, the solution is accepted</li>
+				</ul>
+
+				<h2>Verdicts</h2>
+				
+				<ul>
+					<li><strong>Accepted</strong> : Your code compiled correctly, passed all system tests and was awarded the points indicated in the problem.</li>
+					<li><strong>Wrong Answer</strong> : Your code compiled correctly, but failed one or more system tests.</li>
+					<li><strong>Time Limit</strong> : Your code took longer than 2 seconds to execute.</li>
+					<li><strong>Compile Error</strong> : Your code did not compile correctly, or had system calls in it.</li>
+					<li><strong>Invalid File</strong> : The file you uploaded was not a valid C or C++ source file.</li>
 				</ul>
 
 				<h2>About the interface</h2>
 				
 				<ul>
-					<li>All tables (leaderboard, scoreboard, submissions, etc.) are auto-refreshed, so you never have to refresh the page.</li>
-					<li>The Dashboard displays contest statistics.</li>
-					<li>The Submissions page allows you to see which users have submitted, and what the verdict was.</li>
+					<li>All tables and charts are auto-refreshed, so you never have to refresh the page.</li>
+					<li>The Dashboard displays announcements and various statistics.</li>
+					<li>The Submissions page allows you to see which users have submitted solutions, and what the verdict was.</li>
 					<li>The Scoreboard displays the current standings.</li>
 					<li>The Chat allows you to ask questions, and have them answered in real time.</li>
 				</ul>

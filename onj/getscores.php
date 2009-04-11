@@ -57,13 +57,13 @@
 				for($i=1 ; $i<=count($points) ; $i++)
 				{
 					if($success[ "$row[username]" ][$i] == '0')
-						print "<td><img title='Accepted' src='images/checkmark.png' style='border:none; background:none;'/></td>";
+						print "<td><img title='Accepted' src='images/checkmark.png' class='plain'/></td>";
 					else if($success[ "$row[username]" ][$i] == '1')
-						print "<td><img title='Compile Error' src='images/page.gif' style='border:none; background:none; margin-top: 3px;'/></td>";
+						print "<td><img title='Compile Error' src='images/page.gif' class='plain' style='margin-top: 3px;'/></td>";
 					else if($success[ "$row[username]" ][$i] == '2')
-						print "<td><img title='Wrong Answer' src='images/wrongmark.gif' style='border:none; background:none; margin-top:5px;'/></td>";
+						print "<td><img title='Wrong Answer' src='images/wrongmark.gif' class='plain' style='margin-top:5px;'/></td>";
 					else if($success[ "$row[username]" ][$i] == '3')
-						print "<td><img title='Time Limit' src='images/clock.gif' style='border:none; background:none; margin-top:4px;'/></td>";
+						print "<td><img title='Time Limit' src='images/clock.gif' class='plain' style='margin-top:4px;'/></td>";
 					else
 					{
 						print "<td style='width:25px;'>--</td>";
