@@ -99,8 +99,6 @@ include('settings.php');
 				{
 					move_uploaded_file($_FILES[$file]["tmp_name"], $destFile);
 
-					chmod($destFile, 0004);
-					
 					//----Invoke online judge-----------
 					exec("./onj $destFile $file", $output, $verdict);		
 					
