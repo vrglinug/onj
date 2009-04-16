@@ -14,7 +14,7 @@ WEBROOT=/home/username/www/html/
 DIR=onj
 
 #Your database username
-DBUSER=dbname
+DBUSER=dbuser
 
 #Your database password
 DBPASS=dbpass
@@ -40,18 +40,16 @@ chmod 600 dbinit.sql
 chmod 640 *.php statistics/*.php
 chmod 640 *.js 2> /dev/null
 chmod 600 *.cpp 2> /dev/null
-chmod 600 banned* 2> /dev/null
+chmod 640 banned* 2> /dev/null
 chmod 600 README 2> /dev/null
 
-chown root:root onj
-chmod a+x onj
-chmod a+s onj
+chown $WEBUSER:$WEBUSER onj
+chmod 750 onj
 
-chmod 730 -R code
-chmod 750 images statistics
+chmod 770 code
+chmod 750 images statistics flot
 chmod 750 -R problems
-chmod 600 problems/*/*
-chmod 640 problems/*/statement
+chmod 640 problems/*/*
 
 sed -i "s/dbuser/$DBUSER/g" settings.php
 sed -i "s/dbpass/$DBPASS/g" settings.php
