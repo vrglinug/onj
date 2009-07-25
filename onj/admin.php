@@ -104,17 +104,25 @@ $(document).ready(
 				<p>
 					Username
 					<select id="uname">
-						<option value="nicolodavis">nicolodavis</option>
-						<option value="admin">admin</option>
+						<?php
+							$cn = mysql_connect('localhost', $DBUSER , $DBPASS);
+							mysql_select_db($DBNAME, $cn);
+
+							$result = mysql_query("select username from users");
+
+							while($row = mysql_fetch_array($result))
+								print "<option value='$row[0]'> $row[0] </option";
+
+							mysql_close($cn);
+						?>
 					</select>
 
 					Problem
 					<select id="problemid">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
+						<?php
+							for($i=1 ; $i <= count($points) ; $i++)
+								print "<option value='$i'> $i </option>";
+						?>
 					</select>
 
 					<button id="viewcodebutton">View</button>
