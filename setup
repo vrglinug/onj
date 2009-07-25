@@ -22,6 +22,12 @@ DBPASS=dbpass
 #Database name
 DBNAME=onj
 
+#Contest start time
+STARTTIME=`date -d '1 minute' +"%F %H:%M:%S"`
+
+#Contest end time
+ENDTIME=`date -d '1 hour' +"%F %H:%M:%S"`
+
 if [ $USER = $WEBUSER ]; then
 	echo 'Warning! USER and WEBUSER are set to the same value! This is a major security vulnerability!';
 fi
@@ -54,6 +60,8 @@ chmod 640 problems/*/*
 sed -i "s/dbuser/$DBUSER/g" settings.php
 sed -i "s/dbpass/$DBPASS/g" settings.php
 sed -i "s/dbname/$DBNAME/g" settings.php dbinit.sql
+sed -i "s/STARTTIME/$STARTTIME/g" settings.php
+sed -i "s/ENDTIME/$ENDTIME/g" settings.php
 
 if [ $DBPASS ]; then
 	echo "drop database $DBNAME" | mysql -u"$DBUSER" -p"$DBPASS" 2> /dev/null
