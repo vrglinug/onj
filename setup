@@ -1,0 +1,72 @@
+#!/bin/bash
+
+#Your username
+USER=username
+
+#The username under which apache runs
+WEBUSER=www-data
+
+#Your web root directory
+WEBROOT=/home/username/www/html/
+
+#Your contest directory
+#Use . in case the the judge is placed directly under the web root directory
+DIR=onj
+
+#Your database username
+DBUSER=dbuser
+
+#Your database password
+DBPASS=dbpass
+
+#Database name
+DBNAME=onj
+
+#Contest start time
+STARTTIME=`date -d '1 minute' +"%F %H:%M:%S"`
+
+#Contest end time
+ENDTIME=`date -d '1 hour' +"%F %H:%M:%S"`
+
+if [ $USER = $WEBUSER ]; then
+	echo 'Warning! USER and WEBUSER are set to the same value! This is a major security vulnerability!';
+fi
+
+cd $WEBROOT
+chown $USER:$WEBUSER -R $DIR
+
+chmod 750 $DIR
+cd $WEBROOT/$DIR
+
+rm *~ 2> /dev/null
+rm statistics/*~ 2> /dev/null
+rm problems/*/*~ 2> /dev/null
+
+chmod 600 dbinit.sql
+chmod 640 *.php statistics/*.php
+chmod 640 *.js 2> /dev/null
+chmod 600 *.cpp 2> /dev/null
+chmod 640 banned* 2> /dev/null
+chmod 600 README 2> /dev/null
+
+chown $WEBUSER:$WEBUSER onj
+chmod 750 onj
+
+chmod 770 code
+chmod 750 images statistics flot
+chmod 750 -R problems
+chmod 640 problems/*/*
+
+sed -i "s/dbuser/$DBUSER/g" settings.php
+sed -i "s/dbpass/$DBPASS/g" settings.php
+sed -i "s/dbname/$DBNAME/g" settings.php dbinit.sql
+sed -i "s/STARTTIME/$STARTTIME/g" settings.php
+sed -i "s/ENDTIME/$ENDTIME/g" settings.php
+
+if [ $DBPASS ]; then
+	echo "drop database $DBNAME" | mysql -u"$DBUSER" -p"$DBPASS" 2> /dev/null
+	mysql -u"$DBUSER" -p"$DBPASS" < dbinit.sql
+else
+	echo "drop database $DBNAME" | mysql -u"$DBUSER" 2> /dev/null
+	mysql -u"$DBUSER" < dbinit.sql
+fi
