@@ -16,7 +16,7 @@
 		$username = $_SESSION['username'];
 		$userid = $_SESSION['userid'];
 
-		if($username != 'admin')
+		if($_SESSION['username'] != true)
 		{
 			print "You need to be the administrator to access this file";
 			exit(0);
