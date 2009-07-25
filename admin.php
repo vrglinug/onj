@@ -111,7 +111,7 @@ $(document).ready(
 							$result = mysql_query("select username from users");
 
 							while($row = mysql_fetch_array($result))
-								print "<option value='$row[0]'> $row[0] </option";
+								print "<option value='$row[0]'> $row[0] </option>";
 
 							mysql_close($cn);
 						?>
