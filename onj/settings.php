@@ -18,10 +18,10 @@
 	$points = array(10,25,25,25,50);
 
 	//Start time of the contest in the format 'YYYY-MM-DD HH:MM:SS'
-	$startTime = date_create('2009-04-10 23:00:00');
+	$startTime = date_create('STARTTIME');
 
-	//End time of the contest 'YYYY-MM-DD HH:MM:SS'
-	$endTime = date_create('2009-04-30 17:00:00');
+	//End time of the contest in the format 'YYYY-MM-DD HH:MM:SS'
+	$endTime = date_create('ENDTIME');
 
 	//Interval between refreshes of the leaderboard (milliseconds)
 	$getLeaderInterval = 10000;
