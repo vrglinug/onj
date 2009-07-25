@@ -128,8 +128,8 @@ $(document).ready(
 					<button id="viewcodebutton">View</button>
 				</p>
 
-				<code id="codeplaceholder">
-				</code>
+				<pre id="codeplaceholder">
+				</pre>
 
 			</div>
 			

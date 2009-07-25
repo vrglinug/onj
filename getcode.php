@@ -40,7 +40,7 @@
 			$f = fopen($path.$entry, "r");
 
 			while(!feof($f))
-				print htmlentities(fgets($f)) . "<br/>";
+				print htmlentities(fgets($f));
 			fclose($f);
 
 			$filePresent = true;
