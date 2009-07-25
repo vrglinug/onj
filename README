@@ -3,6 +3,9 @@ INSTALLATION INSTRUCTIONS
 2. Edit setup and set the variables to appropriate values
 3. sudo ./setup
 
+WARNING
+1. Do NOT run setup after the initial installation. It resets the database.
+
 HOW TO UPDATE PROBLEMS
 1. Problems are stored under the problems/ directory
 2. In this directory, you will find subfolders 1/ 2/ 3/ 4/ 5/, each holding data for the corresponding problem
