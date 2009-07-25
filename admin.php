@@ -15,6 +15,12 @@ else
 {
 	$username = $_SESSION['username'];
 	$userid = $_SESSION['userid'];
+
+	if($username != 'admin')
+	{
+		print "You need to be the administrator to access this file";
+		exit(0);
+	}
 }
 
 include('settings.php');
@@ -61,6 +67,13 @@ $(document).ready(
 						});
 			}
 		});
+
+		$("#viewcodebutton").click( function() {
+				var uname = $("#uname").val();
+				var id = $("#problemid").val();
+
+				$.get("getcode.php", {username: uname, problemid: id}, function(data) { $("#codeplaceholder").html(data); });
+			});
 	} 
 );
 
@@ -86,6 +99,29 @@ $(document).ready(
 				
 				<h2>Post Announcement</h2>
 				<input maxlength="400" class="announcementform" type="text" />
+
+				<h2>View Code</h2>
+				<p>
+					Username
+					<select id="uname">
+						<option value="nicolodavis">nicolodavis</option>
+						<option value="admin">admin</option>
+					</select>
+
+					Problem
+					<select id="problemid">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+
+					<button id="viewcodebutton">View</button>
+				</p>
+
+				<code id="codeplaceholder">
+				</code>
 
 			</div>
 			
