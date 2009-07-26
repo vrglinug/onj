@@ -56,7 +56,7 @@ elif(ext == "c"):
 elif(ext == "java"):
 	compile = "javac %s 2> /dev/null" % (sourcefile)
 elif(ext == "cs"):
-	compile = "csc %s > /dev/null 2> /dev/null" % (sourcefile)
+	compile = "csc %s /out:%s > /dev/null 2> /dev/null" % (sourcefile, path + "/a.exe")
 
 if(ext in ["c", "cpp", "java", "cs"]):
 	if(DEBUG): print compile
@@ -82,7 +82,7 @@ elif(ext == "java"):
 	run = ["java", file]
 elif(ext == "cs"):
 	file = file.split(".")[0]
-	run = ["mono", file + ".exe"]
+	run = ["mono", "a.exe"]
 
 #--------------Run------------------------
 signal.signal(signal.SIGALRM, alarm_callback)
