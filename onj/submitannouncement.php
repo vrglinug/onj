@@ -15,6 +15,12 @@
 	{
 		$username = $_SESSION['username'];
 		$userid = $_SESSION['userid'];
+
+		if($_SESSION['username'] != true)
+		{
+			print "You need to be the administrator to access this file";
+			exit(0);
+		}
 	}
 
 	include('settings.php');
