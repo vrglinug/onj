@@ -35,9 +35,13 @@
 
 	while(($entry = $dir->read()) != false)
 	{
-		if($entry!='.' && $entry!='..' && $entry!='a.out' && $entry!='op')
+		list($filename, $ext) = explode(".", $entry);
+
+		if($ext=="cpp" || $ext=="c" || $ext=="java" || $ext=="py" || $ext=="cs")
 		{
 			$f = fopen($path.$entry, "r");
+
+			print "<strong> $entry </strong> <br/><br/>";
 
 			while(!feof($f))
 				print htmlentities(fgets($f));
