@@ -40,6 +40,7 @@ include('settings.php');
 
 <title>Programming Contest</title>
 <script type="text/javascript" src="jquery-1.3.1.js"></script>
+<script type="text/javascript" src="jquery.timers-1.1.2.js"></script>
 <?php include('timer.php'); ?>
 <script type="text/javascript">
 <!--
@@ -63,7 +64,7 @@ $(document).ready(
 
 				if(msg != "") //To prevent empty line announcements
 					$.post("submitannouncement.php", { message: msg }, function(){
-							alert('Announcement posted');	
+							messagebox('Announcement posted');
 						});
 			}
 		});
@@ -96,7 +97,9 @@ $(document).ready(
 		<div id="content-wrap">
 				
 			<div id="main">
-				
+
+				<div class="messagebox" style="display: none"> </div>
+
 				<h2>Post Announcement</h2>
 				<input maxlength="400" class="announcementform" type="text" />
 

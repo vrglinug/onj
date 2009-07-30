@@ -135,5 +135,13 @@ function reloadPage() {
 	window.location.reload();
 }
 
+function messagebox(text)
+{
+	$(".messagebox").html('<div class="messagebox">' + text + '</div>');
+	$(".messagebox").hide();
+	$(".messagebox").slideDown("slow").oneTime("5s", function() { $(this).slideUp("fast") });
+	$(".messagebox").click( function() { $(this).slideUp("fast"); } );
+}
+
 -->
 </script>
