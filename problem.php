@@ -37,6 +37,7 @@ include('settings.php');
 	
 <script type="text/javascript" src="jquery-1.3.1.js"></script>
 <script type="text/javascript" src="jquery.form.js"></script>
+<script type="text/javascript" src="jquery.timers-1.1.2.js"></script>
 <?php include('timer.php'); ?>
 <script type="text/javascript">
 <!--
@@ -51,6 +52,8 @@ function onSucess(data)
 		$('#status' + data.problemid).hide();
 		$('#status' + data.problemid).fadeIn('slow');
 
+		messagebox('Accepted');
+
 		getDetails();
 		getLeaders();
 	}
@@ -60,6 +63,8 @@ function onSucess(data)
 		$('#status' + data.problemid).html('<strong>Compile Error</strong>');
 		$('#status' + data.problemid).hide();
 		$('#status' + data.problemid).fadeIn('slow');
+
+		messagebox('Compile Error');
 	}
 	else if(data.verdict == 2)
 	{
@@ -67,6 +72,8 @@ function onSucess(data)
 		$('#status' + data.problemid).html('<strong>Wrong Answer</strong>');
 		$('#status' + data.problemid).hide();
 		$('#status' + data.problemid).fadeIn('slow');
+
+		messagebox('Wrong Answer');
 	}
 	else if(data.verdict == 3)
 	{
@@ -74,6 +81,8 @@ function onSucess(data)
 		$('#status' + data.problemid).html('<strong>Time Limit</strong>');
 		$('#status' + data.problemid).hide();
 		$('#status' + data.problemid).fadeIn('slow');
+
+		messagebox('Time Limit Exceeded');
 	}
 	else if(data.verdict == 4)
 	{
@@ -81,6 +90,8 @@ function onSucess(data)
 		$('#status' + data.problemid).html('<strong>Invalid File</strong>');
 		$('#status' + data.problemid).hide();
 		$('#status' + data.problemid).fadeIn('slow');
+
+		messagebox('Invalid File');
 	}
 }
 
@@ -130,6 +141,8 @@ $(document).ready(function() {
 		<div id="content-wrap">
 				
 			<div id="main">
+
+				<div class="messagebox" style="display: none"> </div>
 				
 				<?php
 					
