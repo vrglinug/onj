@@ -8,7 +8,7 @@
 	session_start();
 	if(!isset($_SESSION['isloggedin']))
 	{
-		echo "<meta http-equiv='Refresh' content='0; URL=login.php' />";
+		echo "<meta http-equiv='Refresh' content='0; URL=../login.php' />";
 		exit(0);
 	}
 	else
@@ -23,12 +23,12 @@
 		}
 	}
 
-	include('settings.php');
+	include('../settings.php');
 
 	$username = htmlentities($_GET['username']);
 	$problemid = htmlentities($_GET['problemid']);
 
-	$path = "code/$username/$problemid/";
+	$path = "../code/$username/$problemid/";
 
 	$dir = dir($path) or print "File not available";
 	$filePresent = false;

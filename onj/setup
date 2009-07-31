@@ -43,7 +43,7 @@ rm statistics/*~ 2> /dev/null
 rm problems/*/*~ 2> /dev/null
 
 chmod 600 dbinit.sql
-chmod 640 *.php statistics/*.php
+chmod 640 *.php statistics/*.php admin/*.php
 chmod 640 *.js 2> /dev/null
 chmod 600 *.cpp 2> /dev/null
 chmod 640 banned* 2> /dev/null

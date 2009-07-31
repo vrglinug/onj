@@ -63,7 +63,7 @@ $(document).ready(
 				this.value = "";
 
 				if(msg != "") //To prevent empty line announcements
-					$.post("submitannouncement.php", { message: msg }, function(){
+					$.post("admin/submitannouncement.php", { message: msg }, function(){
 							messagebox('Announcement posted');
 						});
 			}
@@ -73,7 +73,7 @@ $(document).ready(
 				var uname = $("#uname").val();
 				var id = $("#problemid").val();
 
-				$.get("getcode.php", {username: uname, problemid: id}, function(data) { $("#codeplaceholder").html(data); });
+				$.get("admin/getcode.php", {username: uname, problemid: id}, function(data) { $("#codeplaceholder").html(data); });
 			});
 	} 
 );

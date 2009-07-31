@@ -8,7 +8,7 @@
 	session_start();
 	if(!isset($_SESSION['isloggedin']))
 	{
-		echo "<meta http-equiv='Refresh' content='0; URL=login.php' />";
+		echo "<meta http-equiv='Refresh' content='0; URL=../login.php' />";
 		exit(0);
 	}
 	else
@@ -23,7 +23,7 @@
 		}
 	}
 
-	include('settings.php');
+	include('../settings.php');
 	
 	if(isset($_SESSION['admin']))
 	{
