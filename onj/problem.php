@@ -95,6 +95,57 @@ function onSucess(data)
 	}
 }
 
+function onEdit()
+{
+	$('#editpanel').html( '<button id="save">Save</button> <button id="cancel">Cancel</button>' );
+	$('#save').click(onSave);
+	$('#cancel').click(onCancel);
+
+	//This will return tabn where n is the problem number
+	var problem = $('body').attr('id'); 
+	//We extract the number from the above
+	problem = problem[3];
+
+	$.get('admin/modifyproblem.php', {problemid: problem, mode: 'get'}, function(data) {
+			$('#statementpanel').html( '<textarea id="statement" style="width: 100%"></textarea>' );
+			$('#statement').text(data);
+		});
+}
+
+function onCancel()
+{
+	$('#editpanel').html( '<button id="edit">Edit</button>' );
+	$('#edit').click(onEdit);
+
+	//This will return tabn where n is the problem number
+	var problem = $('body').attr('id'); 
+	//We extract the number from the above
+	problem = problem[3];
+
+	$.get('admin/modifyproblem.php', {problemid: problem, mode: 'get'}, function(data) {
+			$('#statementpanel').html( '<code class="statement"></code>' );
+			$('code.statement').html(data);
+		});
+}
+
+function onSave()
+{
+	$('#editpanel').html( '<button id="edit">Edit</button>' );
+	$('#edit').click(onEdit);
+
+	var st = $('#statement').val();
+
+	//This will return tabn where n is the problem number
+	var problem = $('body').attr('id'); 
+	//We extract the number from the above
+	problem = problem[3];
+
+	$.post('admin/modifyproblem.php', {problemid: problem, mode: 'put', statement: st}, function(data) {
+			$('#statementpanel').html( '<code class="statement"></code>' );
+			$('code.statement').html(data);
+		});
+}
+
 $(document).ready(function() { 
 		dispTime();
 		getLeaders();
@@ -107,6 +158,8 @@ $(document).ready(function() {
 				dataType: 'json',
 				success: onSucess
 			});
+
+		$('#edit').click(onEdit);
 	} );
 
 -->
@@ -166,11 +219,14 @@ $(document).ready(function() {
 							include('uploadform.php');
 						}
 
-						print "<p><code class='statement'>";
+						print "<p id='statementpanel'><code class='statement'>";
 						
 						readfile("problems/$problemid/statement") or print "Problem is not available at this time";	
 						
 						print "</code></p>";
+
+						if($_SESSION['admin'])
+							print "<p id='editpanel' style='float: right'> <button id='edit'>Edit</button> </p>";
 					}
 
 				?> 

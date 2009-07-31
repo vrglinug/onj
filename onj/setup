@@ -56,7 +56,7 @@ chmod 750 onj
 chmod 770 code
 chmod 750 images statistics flot admin
 chmod 750 -R problems
-chmod 640 problems/*/*
+chmod 660 problems/*/*
 
 sed -i "s/dbuser/$DBUSER/g" settings.php
 sed -i "s/dbpass/$DBPASS/g" settings.php
