@@ -15,6 +15,10 @@ pre {
   border: 1px solid #f2f2f2;  
 }
 
+textarea#statement {
+	height: 500px;
+}
+
 .messagebox {
 	background-color: #FFFFFF;
 	width: 100%;
