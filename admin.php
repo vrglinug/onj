@@ -69,11 +69,22 @@ $(document).ready(
 			}
 		});
 
-		$("#viewcodebutton").click( function() {
+		$("#uname,#problemid").change( function() {
 				var uname = $("#uname").val();
 				var id = $("#problemid").val();
 
-				$.get("admin/getcode.php", {username: uname, problemid: id}, function(data) { $("#codeplaceholder").html(data); });
+				$.get("admin/getcode.php", {username: uname, problemid: id, mode: 'getdir'}, function(data) { $("#filename").html(data); });
+			});
+				
+		//Initially populate the filename box with problem 1 of admin
+		$.get("admin/getcode.php", {username: 'admin', problemid: '1', mode: 'getdir'}, function(data) { $("#filename").html(data); });
+
+		$("#viewcodebutton").click( function() {
+				var uname = $("#uname").val();
+				var id = $("#problemid").val();
+				var file = $("#filename").val();
+
+				$.get("admin/getcode.php", {username: uname, problemid: id, filename: file}, function(data) { $("#codeplaceholder").html(data).fadeIn("fast"); });
 			});
 	} 
 );
@@ -128,10 +139,14 @@ $(document).ready(
 						?>
 					</select>
 
+					Filename
+					<select id="filename">
+					</select>
+
 					<button id="viewcodebutton">View</button>
 				</p>
 
-				<pre id="codeplaceholder">
+				<pre id="codeplaceholder" style="display: none">
 				</pre>
 
 			</div>

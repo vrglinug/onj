@@ -27,31 +27,47 @@
 
 	$username = htmlentities($_GET['username']);
 	$problemid = htmlentities($_GET['problemid']);
+	$mode = htmlentities($_GET['mode']);
 
 	$path = "../code/$username/$problemid/";
+	$dir = dir($path) or print "Empty directory";
 
-	$dir = dir($path) or print "File not available";
-	$filePresent = false;
-
-	while(($entry = $dir->read()) != false)
+	if($mode == 'getdir')
 	{
-		list($filename, $ext) = explode(".", $entry);
-
-		if($ext=="cpp" || $ext=="c" || $ext=="java" || $ext=="py" || $ext=="cs")
+		while(($entry = $dir->read()) != false)
 		{
-			$f = fopen($path.$entry, "r");
+			list($filename, $ext) = explode(".", $entry);
 
-			print "<strong> $entry </strong> <br/><br/>";
-
-			while(!feof($f))
-				print htmlentities(fgets($f));
-			fclose($f);
-
-			$filePresent = true;
-			break;
+			if($ext=="cpp" || $ext=="c" || $ext=="java" || $ext=="py" || $ext=="cs")
+				print "<option value='$entry'> $entry </option>";
+			else if($entry == "op")
+				print "<option value='$entry'> Output </option>";
 		}
 	}
+	else
+	{
+		$filerequested = htmlentities($_GET['filename']);
 
-	if($filePresent == false)
-		print "File not available";
+		$filePresent = false;
+
+		while(($entry = $dir->read()) != false)
+		{
+			if($entry == $filerequested)
+			{
+				$f = fopen($path.$entry, "r");
+
+				print "Username: <strong>$username</strong> | Problem: <strong>$problemid</strong> | Filename: <strong>$entry</strong> <br/><br/>";
+
+				while(!feof($f))
+					print htmlentities(fgets($f));
+				fclose($f);
+
+				$filePresent = true;
+				break;
+			}
+		}
+
+		if($filePresent == false)
+			print "File not available";
+	}
 ?>				
