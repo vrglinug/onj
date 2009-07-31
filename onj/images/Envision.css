@@ -19,6 +19,17 @@ textarea#statement {
 	height: 500px;
 }
 
+button#edit, button#cancel, button#save {
+	background-color: #FAFAFA;
+	border: 1px solid #F2F2F2;
+	font-size: 15px;
+	color: #AAAAAA;
+}
+
+button#edit:hover, button#cancel:hover, button#save:hover {
+	background-color: #EDFDCE;
+}
+
 .messagebox {
 	background-color: #FFFFFF;
 	width: 100%;
