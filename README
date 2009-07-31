@@ -13,6 +13,7 @@ HOW TO UPDATE PROBLEMS
 	- statement : This contains the html of the problem statement
 	- in : This is the system test input file
 	- out : This is the expected output that the program should produce
+4. You can also edit problems from the problem page if you are logged in as admin
 
-HOW TO CHANGE SETTINGS
+HOW TO CHANGE SETTINGS AFTER INITIAL SETUP
 1. Play around with settings.php
