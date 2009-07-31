@@ -54,7 +54,7 @@ chown $WEBUSER:$WEBUSER onj
 chmod 750 onj
 
 chmod 770 code
-chmod 750 images statistics flot
+chmod 750 images statistics flot admin
 chmod 750 -R problems
 chmod 640 problems/*/*
 
