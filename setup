@@ -32,31 +32,15 @@ if [ $USER = $WEBUSER ]; then
 	echo 'Warning! USER and WEBUSER are set to the same value! This is a major security vulnerability!';
 fi
 
-cd $WEBROOT
-chown $USER:$WEBUSER -R $DIR
-
-chmod 750 $DIR
 cd $WEBROOT/$DIR
 
 rm *~ 2> /dev/null
 rm statistics/*~ 2> /dev/null
 rm problems/*/*~ 2> /dev/null
 
-chmod 600 dbinit.sql
-chmod 640 *.php statistics/*.php admin/*.php
-chmod 640 *.js 2> /dev/null
-chmod 600 *.cpp 2> /dev/null
-chmod 640 banned* 2> /dev/null
-chmod 600 README 2> /dev/null
-
-chown -R $WEBUSER:$WEBUSER code/* 2> /dev/null
-chown $WEBUSER:$WEBUSER onj
-chmod 750 onj
-
-chmod 770 code
-chmod 750 images statistics flot admin
-chmod 750 -R problems
-chmod 660 problems/*/*
+chmod 777 code
+chmod 666 problems/*/statement
+chmod 755 onj
 
 sed -i "s/dbuser/$DBUSER/g" settings.php
 sed -i "s/dbpass/$DBPASS/g" settings.php
