@@ -118,7 +118,7 @@ include('settings.php');
 							mysql_query($query);
 					}
 					
-					$verdict = array('verdict' => $verdict, 'problemid' => $problemid);
+					$verdict = array('verdict' => $verdict, 'problemid' => $problemid, 'output' => $output);
 					echo json_encode($verdict);
 
 					mysql_close($cn);
