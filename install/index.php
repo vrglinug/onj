@@ -6,16 +6,6 @@
 */
 
 session_start();
-if(!isset($_SESSION['isloggedin']))
-{
-	echo "<meta http-equiv='Refresh' content='0; URL=../login.php' />";
-	exit(0);
-}
-else
-{
-	$username = $_SESSION['username'];
-	$userid = $_SESSION['userid'];
-}
 
 include('../settings.php');
 ?>
