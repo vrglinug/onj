@@ -5,6 +5,13 @@
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 */
 
+	//If not yet installed, redirect to the install page
+	if(file_exists("setup"))
+	{
+		echo "<meta http-equiv='Refresh' content='0; URL=install/' />";
+		exit(0);
+	}
+
 	//The user name of your database
 	$DBUSER = 'dbuser';
 	//The password of your database
