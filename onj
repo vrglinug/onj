@@ -69,7 +69,7 @@ if(ext in ["c", "cpp", "java", "cs"]):
 		sys.exit(verdict['COMPILE_ERROR'])
 
 file = sourcefile.split("/")[-1]
-infile = PROBLEMDIR + problem + "/in"
+infile = PROBLEMDIR + "/" + problem + "/in"
 outfile = path + "/op"
 
 #Extend this for added language support
