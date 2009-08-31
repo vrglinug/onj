@@ -221,7 +221,7 @@ $(document).ready(function() {
 
 						print "<p id='statementpanel'><code class='statement'>";
 						
-						readfile("problems/$problemid/statement") or print "Problem is not available at this time";	
+						readfile("$PROBLEMDIR/$problemid/statement") or print "Problem is not available at this time";	
 						
 						print "</code></p>";
 
