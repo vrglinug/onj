@@ -44,6 +44,14 @@ include('settings.php');
 
 function onSucess(data)
 {
+	debug = false;
+
+	if(debug)
+	{
+		alert("Verdict = " + data.verdict + "\nOutput = \'" + data.output + "'");
+		return;
+	}
+
 	if(data.verdict == 0)
 	{
 		$('#status' + data.problemid).attr('class', 'accepted');
