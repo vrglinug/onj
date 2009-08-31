@@ -37,4 +37,8 @@
 	$running = false;
 	if($time >= $startTime && $time <= $endTime)
 		$running = true;
+
+	//The following variables hold values of the code and problem directories. These directories are renamed with random strings for security purposes.
+	$CODEDIR = 'codedir';
+	$PROBLEMDIR = 'problemdir';
 ?>

@@ -36,3 +36,15 @@ else
 	echo "drop database $DBNAME" | mysql -u"$DBUSER" 2> /dev/null
 	mysql -u"$DBUSER" < dbinit.sql
 fi
+
+#Generate random strings for the code and problem directories
+JUNK=$(date | md5sum | md5sum)
+APPEND=${JUNK:0:20}
+CODEDIR=code_$APPEND
+PROBLEMDIR=problems_$APPEND
+
+sed -i "s/codedir/$CODEDIR/g" settings.php
+sed -i "s/problemdir/$PROBLEMDIR/g" settings.php
+
+mv code $CODEDIR
+mv problems $PROBLEMDIR
