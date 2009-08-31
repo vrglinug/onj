@@ -28,7 +28,7 @@
 	$problemid = htmlentities($_REQUEST['problemid']);
 	$mode = htmlentities($_REQUEST['mode']);
 
-	$file = "../problems/$problemid/statement";
+	$file = "../$PROBLEMDIR/$problemid/statement";
 
 	if($mode == 'get')
 	{
