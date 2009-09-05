@@ -167,20 +167,20 @@ $(document).ready(
 					<p>
 						<label>Start Time:</label>
 						<input class=".timefield" type="text" id="sday" size="2" />
-						<input class=".timefield" type="text" id="smonth" size="2" />
-						<input class=".timefield" type="text" id="syear" size="4" />
+						/ <input class=".timefield" type="text" id="smonth" size="2" />
+						/ <input class=".timefield" type="text" id="syear" size="4" />
 						<input class=".timefield" type="text" id="shour" size="2" />
-						<input class=".timefield" type="text" id="smin" size="2" />
-						<input class=".timefield" type="text" id="ssec" size="2" />
+						: <input class=".timefield" type="text" id="smin" size="2" />
+						: <input class=".timefield" type="text" id="ssec" size="2" />
 					</p>
 					<p>
 						<label>End Time:</label>
 						<input class=".timefield" type="text" id="eday" size="2" />
-						<input class=".timefield" type="text" id="emonth" size="2" />
-						<input class=".timefield" type="text" id="eyear" size="4" />
+						/ <input class=".timefield" type="text" id="emonth" size="2" />
+						/ <input class=".timefield" type="text" id="eyear" size="4" />
 						<input class=".timefield" type="text" id="ehour" size="2" />
-						<input class=".timefield" type="text" id="emin" size="2" />
-						<input class=".timefield" type="text" id="esec" size="2" />
+						: <input class=".timefield" type="text" id="emin" size="2" />
+						: <input class=".timefield" type="text" id="esec" size="2" />
 					</p>
 				</form>
 
