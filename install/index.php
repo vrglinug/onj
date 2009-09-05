@@ -32,6 +32,31 @@ include('../settings.php');
 $(document).ready(
 	function()
 	{ 
+		$("#sday,#eday").val('DD').focus( function() { $(this).val(''); } );
+		$("#smonth,#emonth").val('MM').focus( function() { $(this).val(''); } );
+		$("#syear,#eyear").val('YY').focus( function() { $(this).val(''); } );
+		$("#shour,#ehour").val('hh').focus( function() { $(this).val(''); } );
+		$("#smin,#emin").val('mm').focus( function() { $(this).val(''); } );
+		$("#ssec,#esec").val('ss').focus( function() { $(this).val(''); } );
+
+		$("#sday,#eday").blur( function() { if($(this).val().length == 0) $(this).val('DD'); });
+		$("#smonth,#emonth").blur( function() { if($(this).val().length == 0) $(this).val('MM'); });
+		$("#syear,#eyear").blur( function() { if($(this).val().length == 0) $(this).val('YY'); });
+		$("#shour,#ehour").blur( function() { if($(this).val().length == 0) $(this).val('hh'); });
+		$("#smin,#emin").blur( function() { if($(this).val().length == 0) $(this).val('mm'); });
+		$("#ssec,#esec").blur( function() { if($(this).val().length == 0) $(this).val('ss'); });
+
+		$("#sday,#eday,#smonth,#emonth,#syear,#eyear,#shour,#ehour,#smin,#emin,#ssec,#esec").keypress( function(e) { 
+				//Allow only backspace, delete, arrow keys and numeric keys
+				if(e.keyCode==8 || e.keyCode==46 || e.keyCode==37 || e.keyCode==38 || e.keyCode==39 || e.keyCode==40 || (e.which>=48 && e.which<=57))
+				{
+					//Prevent numbers if the length of the field is already 2
+					if($(this).val().length >=2 && e.which>=48 && e.which<=57)
+						return false;
+				}
+				else
+					return false;
+			});
 	} 
 );
 
@@ -74,11 +99,21 @@ $(document).ready(
 				<form>
 					<p>
 						<label>Start Time:</label>
-						<input type="text" id="user"/>
+						<input class=".timefield" type="text" id="sday" size="2" />
+						<input class=".timefield" type="text" id="smonth" size="2" />
+						<input class=".timefield" type="text" id="syear" size="2" />
+						<input class=".timefield" type="text" id="shour" size="2" />
+						<input class=".timefield" type="text" id="smin" size="2" />
+						<input class=".timefield" type="text" id="ssec" size="2" />
 					</p>
 					<p>
 						<label>End Time:</label>
-						<input type="text" id="user"/>
+						<input class=".timefield" type="text" id="eday" size="2" />
+						<input class=".timefield" type="text" id="emonth" size="2" />
+						<input class=".timefield" type="text" id="eyear" size="2" />
+						<input class=".timefield" type="text" id="ehour" size="2" />
+						<input class=".timefield" type="text" id="emin" size="2" />
+						<input class=".timefield" type="text" id="esec" size="2" />
 					</p>
 				</form>
 
