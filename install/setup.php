@@ -43,19 +43,19 @@
 			exit(0);
 		}
 
-		$sday = htmlentities($_GET['sday']);
-		$smonth = htmlentities($_GET['smonth']);
-		$syear = htmlentities($_GET['syear']);
-		$shour = htmlentities($_GET['shour']);
-		$smin = htmlentities($_GET['smin']);
-		$ssec = htmlentities($_GET['ssec']);
+		$sday = intval(htmlentities($_GET['sday']));
+		$smonth = intval(htmlentities($_GET['smonth']));
+		$syear = intval(htmlentities($_GET['syear']));
+		$shour = intval(htmlentities($_GET['shour']));
+		$smin = intval(htmlentities($_GET['smin']));
+		$ssec = intval(htmlentities($_GET['ssec']));
 
-		$eday = htmlentities($_GET['eday']);
-		$emonth = htmlentities($_GET['emonth']);
-		$eyear = htmlentities($_GET['eyear']);
-		$ehour = htmlentities($_GET['ehour']);
-		$emin = htmlentities($_GET['emin']);
-		$esec = htmlentities($_GET['esec']);
+		$eday = intval(htmlentities($_GET['eday']));
+		$emonth = intval(htmlentities($_GET['emonth']));
+		$eyear = intval(htmlentities($_GET['eyear']));
+		$ehour = intval(htmlentities($_GET['ehour']));
+		$emin = intval(htmlentities($_GET['emin']));
+		$esec = intval(htmlentities($_GET['esec']));
 
 		//Time is in the format 'YYYY-MM-DD HH:MM:SS'
 		if(is_int($sday) && 
@@ -66,6 +66,9 @@
 			is_int($ssec) &&
 			$sday>=1 && $sday<=31 &&
 			$smonth>=1 && $smonth<=12 &&
+			$shour>=0 && $shour<=24 &&
+			$smin>=0 && $smin<=60 &&
+			$ssec>=0 && $ssec<=60 &&
 			is_int($eday) &&
 			is_int($emonth) &&
 			is_int($eyear) &&
@@ -73,7 +76,10 @@
 			is_int($emin) &&
 			is_int($esec) &&
 			$eday>=1 && $eday<=31 &&
-			$emonth>=1 && $emonth<=12)
+			$emonth>=1 && $emonth<=12 &&
+			$ehour>=0 && $ehour<=24 &&
+			$emin>=0 && $emin<=60 &&
+			$esec>=0 && $esec<=60)
 		{
 			$startTime = "$syear-$smonth-$sday $shour:$smin:$ssec";
 			$endTime = "$eyear-$emonth-$eday $ehour:$emin:$esec";
