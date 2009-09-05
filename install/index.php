@@ -40,6 +40,8 @@ button#confirm:hover {
 
 <!--[if IE]><script language="javascript" type="text/javascript" src="../excanvas.pack.js"></script><![endif]-->
 <script type="text/javascript" src="../jquery-1.3.1.js"></script>
+<script type="text/javascript" src="../jquery.timers-1.1.2.js"></script>
+<?php include('../timer.php'); ?>
 <script type="text/javascript">
 <!--
 
@@ -83,6 +85,43 @@ $(document).ready(
 				else
 					return false;
 			});
+
+		$("#confirm").click( function() {
+
+				$.getJSON("setup.php", 
+						{
+							mode: "setup",
+
+							dbuser: $("#dbuser").val(),
+							dbpass: $("#dbpass").val(),
+							dbname: $("#dbname").val(),
+
+							sday: $("#sday").val(),
+							smonth: $("#smonth").val(),
+							syear: $("#syear").val(),
+							shour: $("#shour").val(),
+							smin: $("#smin").val(),
+							ssec: $("#ssec").val(),
+
+							eday: $("#eday").val(),
+							emonth: $("#emonth").val(),
+							eyear: $("#eyear").val(),
+							ehour: $("#ehour").val(),
+							emin: $("#emin").val(),
+							esec: $("#esec").val(),
+						}, 
+						function(ret) {
+
+							if(ret.status == "dberror")
+								messagebox("Database error");
+							else if(ret.status == "timeformaterror")
+								messagebox("Error in date/time format");
+							else if(ret.status == "success")
+								messagebox("Installed successfully!");
+							else
+								alert(ret.status);
+					});
+			});
 	} 
 );
 
@@ -104,6 +143,8 @@ $(document).ready(
 		<div id="content-wrap">
 								
 			<div id="main">
+
+				<div class="messagebox" style="display: none"> </div>
 				
 				<h2>Database</h2>
 				<form>
