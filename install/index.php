@@ -23,6 +23,13 @@ include('../settings.php');
 <link rel="stylesheet" href="../images/Envision.css" type="text/css" />
 
 <style>
+
+/* To make the messagebox float along in case the user scrolls */
+html, body {
+	height: 100%;
+	overflow: auto;
+}
+
 button#confirm {
 	background-color: #FAFAFA;
 	border: 1px solid #F2F2F2;
@@ -31,9 +38,11 @@ button#confirm {
 	padding: 2px;
 	margin: 10px;
 }
+
 button#confirm:hover {
 	background-color: #EDFDCE;
 }
+
 </style>
 
 <title>Programming Contest</title>
