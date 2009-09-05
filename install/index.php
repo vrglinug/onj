@@ -22,6 +22,20 @@ include('../settings.php');
 
 <link rel="stylesheet" href="../images/Envision.css" type="text/css" />
 
+<style>
+button#confirm {
+	background-color: #FAFAFA;
+	border: 1px solid #F2F2F2;
+	font-size: 15px;
+	color: #AAAAAA;
+	padding: 2px;
+	margin: 10px;
+}
+button#confirm:hover {
+	background-color: #EDFDCE;
+}
+</style>
+
 <title>Programming Contest</title>
 
 <!--[if IE]><script language="javascript" type="text/javascript" src="../excanvas.pack.js"></script><![endif]-->
@@ -116,6 +130,8 @@ $(document).ready(
 						<input class=".timefield" type="text" id="esec" size="2" />
 					</p>
 				</form>
+
+				<button id="confirm">Confirm</button>
 
 			</div>
 
