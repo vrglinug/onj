@@ -4,13 +4,13 @@ import sys, signal, os, subprocess
 
 PROBLEMDIR = 'problems'
 
-#Verdicts
+# Verdicts
 verdict = {'CORRECT' : 0, 'COMPILE_ERROR' : 1, 'WRONG' : 2, 'TIME_EXCEEDED' : 3, 'ILLEGAL_FILE' : 4}
 
-#Execution time limit
+# Execution time limit
 TIME_LIMIT = 2
 
-#Set this to True to see debug messages
+# Set this to True to see debug messages
 DEBUG = True
 
 p = None
@@ -41,16 +41,18 @@ def compare_files(a, b):
 
 	return True
 
+# Parse commandline options
 sourcefile = sys.argv[1]
 problem = sys.argv[2]
 path = "/".join(sourcefile.split("/")[:-1])
 ext = sourcefile.split(".")[1]	
 
+# Return ILLEGAL_FILE if extension is not recognized
 if ext not in ["c", "cpp", "java", "cs", "py", "rb"]:
 	if(DEBUG): print "Illegal file"
 	sys.exit(verdict['ILLEGAL_FILE'])
 
-#Extend this for added language support
+# Extend this for added language support
 if(ext == "cpp"):
 	compile = "g++ -lm %s -o %s 2> /dev/null" % (sourcefile, path + "/a.out")
 elif(ext == "c"):
@@ -72,7 +74,7 @@ file = sourcefile.split("/")[-1]
 infile = PROBLEMDIR + "/" + problem + "/in"
 outfile = path + "/op"
 
-#Extend this for added language support
+# Extend this for added language support
 if(ext in ["c", "cpp"]):
 	run = "./a.out"
 elif(ext == "rb"):
