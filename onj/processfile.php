@@ -73,12 +73,12 @@ include('settings.php');
 
 			if($statString[$status] != "Accepted")
 			{
-				$userDir = "code/".$username."/";
+				$userDir = "$CODEDIR/".$username."/";
 				$uploadDir = $userDir . $file . "/";
 				
-				if(!file_exists("code/"))
+				if(!file_exists("$CODEDIR/"))
 				{
-					mkdir("code/") or die("Could not create upload directory");
+					mkdir("$CODEDIR/") or die("Could not create upload directory");
 				}
 				if(!file_exists($userDir))
 				{

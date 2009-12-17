@@ -2,7 +2,7 @@
 
 import sys, signal, os, subprocess
 
-PROBLEMDIR = 'problemdir'
+PROBLEMDIR = 'problems'
 
 #Verdicts
 verdict = {'CORRECT' : 0, 'COMPILE_ERROR' : 1, 'WRONG' : 2, 'TIME_EXCEEDED' : 3, 'ILLEGAL_FILE' : 4}
@@ -11,7 +11,7 @@ verdict = {'CORRECT' : 0, 'COMPILE_ERROR' : 1, 'WRONG' : 2, 'TIME_EXCEEDED' : 3,
 TIME_LIMIT = 2
 
 #Set this to True to see debug messages
-DEBUG = False
+DEBUG = True
 
 p = None
 

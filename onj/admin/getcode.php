@@ -29,7 +29,7 @@
 	$problemid = htmlentities($_GET['problemid']);
 	$mode = htmlentities($_GET['mode']);
 
-	$path = "../code/$username/$problemid/";
+	$path = "../$CODEDIR/$username/$problemid/";
 	$dir = dir($path) or print "Empty directory";
 
 	if($mode == 'getdir')

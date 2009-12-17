@@ -1,18 +1,5 @@
 #!/bin/bash
 
-#Your username
-USER=username
-
-#The username under which apache runs
-WEBUSER=www-data
-
-#Your web root directory
-WEBROOT=/home/username/www/html/
-
-#Your contest directory
-#Use . in case the the judge is placed directly under the web root directory
-DIR=onj
-
 #Your database username
 DBUSER=dbuser
 
@@ -22,41 +9,19 @@ DBPASS=dbpass
 #Database name
 DBNAME=onj
 
-#Contest start time
+#Contest start time (by default set to 1 minute after you run setup)
 STARTTIME=`date -d '1 minute' +"%F %H:%M:%S"`
 
-#Contest end time
+#Contest end time (by default set to 1 hour after you run setup)
 ENDTIME=`date -d '1 hour' +"%F %H:%M:%S"`
-
-if [ $USER = $WEBUSER ]; then
-	echo 'Warning! USER and WEBUSER are set to the same value! This is a major security vulnerability!';
-fi
-
-cd $WEBROOT
-chown $USER:$WEBUSER -R $DIR
-
-chmod 750 $DIR
-cd $WEBROOT/$DIR
 
 rm *~ 2> /dev/null
 rm statistics/*~ 2> /dev/null
-rm problems/*/*~ 2> /dev/null
+rm problems*/*/*~ 2> /dev/null
 
-chmod 600 dbinit.sql
-chmod 640 *.php statistics/*.php admin/*.php
-chmod 640 *.js 2> /dev/null
-chmod 600 *.cpp 2> /dev/null
-chmod 640 banned* 2> /dev/null
-chmod 600 README 2> /dev/null
-
-chown -R $WEBUSER:$WEBUSER code/* 2> /dev/null
-chown $WEBUSER:$WEBUSER onj
-chmod 750 onj
-
-chmod 770 code
-chmod 750 images statistics flot admin
-chmod 750 -R problems
-chmod 660 problems/*/*
+chmod 777 code*
+chmod 666 problems*/*/statement
+chmod 755 onj
 
 sed -i "s/dbuser/$DBUSER/g" settings.php
 sed -i "s/dbpass/$DBPASS/g" settings.php
@@ -71,3 +36,20 @@ else
 	echo "drop database $DBNAME" | mysql -u"$DBUSER" 2> /dev/null
 	mysql -u"$DBUSER" < dbinit.sql
 fi
+
+#Generate random strings for the code and problem directories
+JUNK=$(date | md5sum | md5sum)
+APPEND=${JUNK:0:20}
+
+# Uncomment these when you want to use random strings for code and problem directories
+#CODEDIR=code_$APPEND
+#PROBLEMDIR=problems_$APPEND
+
+CODEDIR=code
+PROBLEMDIR=problems
+
+sed -i "s/codedir/$CODEDIR/g" settings.php
+sed -i "s/problemdir/$PROBLEMDIR/g" settings.php onj
+
+mv code* $CODEDIR 2> /dev/null
+mv problems* $PROBLEMDIR 2> /dev/null
