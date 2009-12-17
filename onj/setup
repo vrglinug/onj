@@ -1,34 +1,33 @@
 #!/bin/bash
 
-#Your database username
+# Your database username
 DBUSER=dbuser
 
-#Your database password
+# Your database password
 DBPASS=dbpass
 
-#Database name
+# Database name
 DBNAME=onj
 
-#Contest start time (by default set to 1 minute after you run setup)
+# Contest start time (by default set to 1 minute after you run setup)
 STARTTIME=`date -d '1 minute' +"%F %H:%M:%S"`
 
-#Contest end time (by default set to 1 hour after you run setup)
+# Contest end time (by default set to 1 hour after you run setup)
 ENDTIME=`date -d '1 hour' +"%F %H:%M:%S"`
 
-rm *~ 2> /dev/null
-rm statistics/*~ 2> /dev/null
-rm problems*/*/*~ 2> /dev/null
-
+# Set correct permissions
 chmod 777 code*
 chmod 666 problems*/*/statement
 chmod 755 onj
 
+# Replace constants in settings.php and dbinit.sql
 sed -i "s/dbuser/$DBUSER/g" settings.php
 sed -i "s/dbpass/$DBPASS/g" settings.php
 sed -i "s/dbname/$DBNAME/g" settings.php dbinit.sql
 sed -i "s/STARTTIME/$STARTTIME/g" settings.php
 sed -i "s/ENDTIME/$ENDTIME/g" settings.php
 
+# Initialize database
 if [ $DBPASS ]; then
 	echo "drop database $DBNAME" | mysql -u"$DBUSER" -p"$DBPASS" 2> /dev/null
 	mysql -u"$DBUSER" -p"$DBPASS" < dbinit.sql
@@ -37,7 +36,7 @@ else
 	mysql -u"$DBUSER" < dbinit.sql
 fi
 
-#Generate random strings for the code and problem directories
+# Generate random strings for the code and problem directories
 JUNK=$(date | md5sum | md5sum)
 APPEND=${JUNK:0:20}
 
