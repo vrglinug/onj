@@ -12,14 +12,17 @@ TIME_LIMIT = 2
 
 p = None
 
+# All debug messages come through this
 def debug(msg):
 	syslog.syslog(msg)
 
+# This is called in case the program takes too long to execute
 def alarm_callback(signum, frame):
 	p.terminate()
 	debug("Time out")
 	sys.exit(verdict['TIME_EXCEEDED'])
 
+# Lenient file comparator
 def compare_files(a, b):
 	fileA = open(a, "r")
 	fileB = open(b, "r")
@@ -64,7 +67,8 @@ elif(ext == "cs"):
 
 if(ext in ["c", "cpp", "java", "cs"]):
 	debug(compile)
-	#--------------Compile--------------------
+
+	# Compile
 	r = os.system(compile)
 	if(r):
 		debug("Compile Error")
@@ -88,19 +92,16 @@ elif(ext == "cs"):
 	file = file.split(".")[0]
 	run = ["mono", "a.exe"]
 
-#--------------Run------------------------
+# Run
+debug("Running...")
 signal.signal(signal.SIGALRM, alarm_callback)
 signal.alarm(TIME_LIMIT)
-debug("Running...")
 p = subprocess.Popen(run, stdin=open(infile,"r"), stdout=open(outfile,"w"), stderr=open("/dev/null", "w"), cwd=path)
 r = os.waitpid(p.pid, 0)[1]
 signal.alarm(0)
-
 debug("Exit status : %d" % r)
-if(r != 0):
-	debug("Runtime Error")
-	sys.exit(verdict['WRONG'])
 
+# Compare output with expected output
 outputProduced = path + "/op"
 outputExpected = "./" + PROBLEMDIR + "/" + problem + "/out"
 
