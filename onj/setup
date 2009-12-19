@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# EDIT THE FOLLOWING VARIABLES
+#
+
 # Your database username
 DBUSER=dbuser
 
@@ -15,19 +19,23 @@ STARTTIME=`date -d '1 minute' +"%F %H:%M:%S"`
 # Contest end time (by default set to 1 hour after you run setup)
 ENDTIME=`date -d '1 hour' +"%F %H:%M:%S"`
 
-# Set correct permissions
+#
+# DO NOT EDIT BELOW THIS UNLESS YOU REALLY KNOW WHAT YOU ARE DOING
+#
+
+# This sets correct permissions
 chmod 777 code*
 chmod 666 problems*/*/statement
 chmod 755 onj
 
-# Replace constants in settings.php and dbinit.sql
+# This replaces constants in settings.php and dbinit.sql
 sed -i "s/dbuser/$DBUSER/g" settings.php
 sed -i "s/dbpass/$DBPASS/g" settings.php
 sed -i "s/dbname/$DBNAME/g" settings.php dbinit.sql
 sed -i "s/STARTTIME/$STARTTIME/g" settings.php
 sed -i "s/ENDTIME/$ENDTIME/g" settings.php
 
-# Initialize database
+# This initializes the database
 if [ $DBPASS ]; then
 	echo "drop database $DBNAME" | mysql -u"$DBUSER" -p"$DBPASS" 2> /dev/null
 	mysql -u"$DBUSER" -p"$DBPASS" < dbinit.sql
@@ -36,7 +44,7 @@ else
 	mysql -u"$DBUSER" < dbinit.sql
 fi
 
-# Generate random strings for the code and problem directories
+# This generates random strings for the code and problem directories
 JUNK=$(date | md5sum | md5sum)
 APPEND=${JUNK:0:20}
 
