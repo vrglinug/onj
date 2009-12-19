@@ -83,10 +83,12 @@ include('settings.php');
 				if(!file_exists($userDir))
 				{
 					mkdir($userDir);
+					chmod($userDir, 0777);
 				}
 				if(!file_exists($uploadDir))
 				{
 					mkdir($uploadDir);
+					chmod($uploadDir, 0777);
 				}
 				
 				$destFile = $uploadDir . $_FILES[$file]["name"];
