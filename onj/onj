@@ -51,7 +51,7 @@ path = "/".join(sourcefile.split("/")[:-1])
 ext = sourcefile.split(".")[1]	
 
 # Return ILLEGAL_FILE if extension is not recognized
-if ext not in ["c", "cpp", "java", "cs", "py", "rb"]:
+if ext not in ["c", "cpp", "java", "cs", "py", "rb", "php"]:
 	debug("Illegal file")
 	sys.exit(verdict['ILLEGAL_FILE'])
 
@@ -91,6 +91,8 @@ elif(ext == "java"):
 elif(ext == "cs"):
 	file = file.split(".")[0]
 	run = ["mono", "a.exe"]
+elif(ext == "php"):
+	run = ["php", "-f", file]
 
 # Run
 debug("Running...")
