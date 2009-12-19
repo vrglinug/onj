@@ -1,7 +1,7 @@
 INSTALLATION INSTRUCTIONS
 1. Place these files in a directory under your web root
 2. Edit setup and set the variables to appropriate values
-3. sudo ./setup
+3. Run ./setup
 
 WARNING
 1. Do NOT run setup after the initial installation. It resets the database.
