@@ -66,8 +66,10 @@ elif(ext == "cs"):
 	compile = "csc %s /out:%s > /dev/null 2> /dev/null" % (sourcefile, path + "/a.exe")
 elif(ext == "php"):
 	compile = "php -l %s" % (sourcefile)
+elif(ext == "rb"):
+	compile = "ruby -c %s" % (sourcefile)
 
-if(ext in ["c", "cpp", "java", "cs", "php"]):
+if(ext in ["c", "cpp", "java", "cs", "php", "rb"]):
 	debug(compile)
 
 	# Compile
