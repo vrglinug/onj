@@ -1,9 +1,31 @@
-<!--
-* @copyright (c) 2008 Nicolo John Davis
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
--->
+<div class="navbar navbar-inverse">
+<div class="navbar-inner">
+<a class="brand" href="index.php">Programming Contest codeMSRIT</a>
 
-<div id="header">			
-	<h1 id="logo-text"><a href="index.php">Programming Contest</a></h1>		
-	<p id="slogan" style="margin-left: 420px">powered by <a style="color:white; text-decoration: none; font-weight: bold" href="https://sourceforge.net/projects/onj">ONJ</a></p>		
+<ul class="nav nav-pills pull-right">
+<?php
+if(!isset($_SESSION['isloggedin']))
+{
+?>
+<li id="menu1"><a href="login.php">Login</a></li>
+<li id="menu5"><a href="faq.php">Faq</a></li>
+<?php
+}
+else
+{
+?>
+<li id="menu1"><a href="index.php">Dashboard</a></li>
+<li id="menu2"><a href="problem.php">Problems</a></li>
+<li id="menu3"><a href="submissions.php">Submissions</a></li>
+<li id="menu4"><a href="scores.php">Scoreboard</a></li>
+<li id="menu5"><a href="faq.php">Faq</a></li>
+<li id="menu6"><a href="chat.php">Chat</a></li>
+<li id="menu7"><a href="admin.php">Admin</a></li>
+<li id="menu8"><a href="logout.php">Logout</a></li>
+<?php
+}
+?>
+</ul>
+
+</div>
 </div>

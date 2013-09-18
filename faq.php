@@ -1,17 +1,12 @@
 <?php
 
-/*
-* @copyright (c) 2008 Nicolo John Davis
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*/
-
 session_start();
 if(isset($_SESSION['isloggedin'])) 
 {
 	$username = $_SESSION['username'];
 	$userid = $_SESSION['userid'];
 }
-include('settings.php');
+require_once('settings.php');
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -25,6 +20,7 @@ include('settings.php');
 <meta name="Robots" content="index,follow" />
 
 <link rel="stylesheet" href="images/Envision.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 
 <title>Programming Contest</title>
 
@@ -52,10 +48,7 @@ $(document).ready(function(){
 <div id="wrap">
 		
 		<!--header -->
-		<?php include('header.php'); ?>
-		
-		<!-- menu -->	
-		<?php include('menu.php'); ?>
+		<?php require_once('header.php'); ?>
 			
 		<!-- content-wrap starts here -->
 		<div id="content-wrap">

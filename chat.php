@@ -1,10 +1,4 @@
 <?php
-
-/*
-* @copyright (c) 2008 Nicolo John Davis
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*/
-
 session_start();
 if(!isset($_SESSION['isloggedin']))
 {
@@ -31,6 +25,7 @@ include('settings.php');
 <meta name="Robots" content="index,follow" />
 
 <link rel="stylesheet" href="images/Envision.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 
 <title>Programming Contest</title>
 <script type="text/javascript" src="jquery-1.3.1.js"></script>
@@ -91,10 +86,7 @@ $(document).ready(
 <div id="wrap">
 		
 		<!--header -->
-		<?php include('header.php'); ?>
-		
-		<!-- menu -->	
-		<?php include('menu.php'); ?>
+		<?php require_once('header.php'); ?>
 			
 		<!-- content-wrap starts here -->
 		<div id="content-wrap">

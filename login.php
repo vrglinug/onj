@@ -20,6 +20,7 @@ include('settings.php');
 <meta name="Robots" content="index,follow" />
 
 <link rel="stylesheet" href="images/Envision.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 
 <title>Programming Contest</title>
 
@@ -122,10 +123,7 @@ $(document).ready(function(){
 <div id="wrap">
 		
 		<!--header -->
-		<?php include('header.php'); ?>
-		
-		<!-- menu -->	
-		<?php include('menu.php'); ?>
+		<?php require_once('header.php'); ?>
 			
 		<!-- content-wrap starts here -->
 		<div id="content-wrap">

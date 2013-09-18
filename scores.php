@@ -31,6 +31,7 @@ include('settings.php');
 <meta name="Robots" content="index,follow" />
 
 <link rel="stylesheet" href="images/Envision.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
 
 <title>Programming Contest</title>
 <script type="text/javascript" src="jquery-1.3.1.js"></script>
@@ -64,8 +65,6 @@ $(document).ready(
 		<!--header -->
 		<?php include('header.php'); ?>
 		
-		<!-- menu -->	
-		<?php include('menu.php'); ?>
 			
 		<!-- content-wrap starts here -->
 		<div id="content-wrap">
