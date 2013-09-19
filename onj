@@ -1,0 +1,119 @@
+#!/usr/bin/python
+
+import sys, signal, os, subprocess, syslog
+
+PROBLEMDIR = 'problems'
+
+# Verdicts
+verdict = {'CORRECT' : 0, 'COMPILE_ERROR' : 1, 'WRONG' : 2, 'TIME_EXCEEDED' : 3, 'ILLEGAL_FILE' : 4}
+
+# Execution time limit
+TIME_LIMIT = 2
+
+p = None
+
+# All debug messages come through this
+def debug(msg):
+	syslog.syslog(msg)
+
+# This is called in case the program takes too long to execute
+def alarm_callback(signum, frame):
+	p.terminate()
+	debug("Time out")
+	sys.exit(verdict['TIME_EXCEEDED'])
+
+# Lenient file comparator
+def compare_files(a, b):
+	fileA = open(a, "r")
+	fileB = open(b, "r")
+
+	linesA = fileA.readlines()
+	linesB = fileB.readlines()
+
+	fileA.close()
+	fileB.close()
+
+	if(len(linesA) != len(linesB)):
+		return False
+
+	for i in range(0, len(linesA)):
+		lineA = linesA[i].strip()
+		lineB = linesB[i].strip()
+		if(lineA != lineB):
+			return False
+
+	return True
+
+# Parse commandline options
+sourcefile = sys.argv[1]
+problem = sys.argv[2]
+path = "/".join(sourcefile.split("/")[:-1])
+ext = sourcefile.split(".")[1]	
+
+# Return ILLEGAL_FILE if extension is not recognized
+if ext not in ["c", "cpp", "java", "cs", "py", "rb", "php"]:
+	debug("Illegal file")
+	sys.exit(verdict['ILLEGAL_FILE'])
+
+# Extend this for added language support
+if(ext == "cpp"):
+	compile = "g++ -lm %s -o %s 2> /dev/null" % (sourcefile, path + "/a.out")
+elif(ext == "c"):
+	compile = "gcc -lm %s -o %s 2> /dev/null" % (sourcefile, path + "/a.out")
+elif(ext == "java"):
+	compile = "javac %s 2> /dev/null" % (sourcefile)
+elif(ext == "cs"):
+	compile = "csc %s /out:%s > /dev/null 2> /dev/null" % (sourcefile, path + "/a.exe")
+elif(ext == "php"):
+	compile = "php -l %s" % (sourcefile)
+elif(ext == "rb"):
+	compile = "ruby -c %s" % (sourcefile)
+
+if(ext in ["c", "cpp", "java", "cs", "php", "rb"]):
+	debug(compile)
+
+	# Compile
+	r = os.system(compile)
+	if(r):
+		debug("Compile Error")
+		sys.exit(verdict['COMPILE_ERROR'])
+
+file = sourcefile.split("/")[-1]
+infile = PROBLEMDIR + "/" + problem + "/in"
+outfile = path + "/op"
+
+# Extend this for added language support
+if(ext in ["c", "cpp"]):
+	run = "./a.out"
+elif(ext == "rb"):
+	run = ["ruby", file]
+elif(ext == "py"):
+	run = ["python", file]
+elif(ext == "java"):
+	file = file.split(".")[0]
+	run = ["java", file]
+elif(ext == "cs"):
+	file = file.split(".")[0]
+	run = ["mono", "a.exe"]
+elif(ext == "php"):
+	run = ["php", "-f", file]
+
+# Run
+debug("Running...")
+signal.signal(signal.SIGALRM, alarm_callback)
+signal.alarm(TIME_LIMIT)
+p = subprocess.Popen(run, stdin=open(infile,"r"), stdout=open(outfile,"w"), stderr=open("/dev/null", "w"), cwd=path)
+r = os.waitpid(p.pid, 0)[1]
+signal.alarm(0)
+debug("Exit status : %d" % r)
+
+# Compare output with expected output
+outputProduced = path + "/op"
+outputExpected = "./" + PROBLEMDIR + "/" + problem + "/out"
+
+if( compare_files(outputProduced, outputExpected) == True ):
+	debug("Correct")
+	sys.exit(verdict['CORRECT'])
+else:
+	debug("Wrong")
+	sys.exit(verdict['WRONG'])
