@@ -75,6 +75,18 @@ td.wrong {
 	padding-left: 50px;
 }
 
+/********************************************
+   AUTHOR:  			Erwin Aligam 
+   WEBSITE:   			http://www.styleshout.com/
+	TEMPLATE NAME:		Envision
+   TEMPLATE CODE: 	S-0013
+   VERSION:          1.1
+	LAST MODIFIED     Nov-14-2007 	
+ *******************************************/
+ 
+/********************************************
+   HTML ELEMENTS
+********************************************/ 
 
 /* Top Elements */
 * { margin: 0; padding: 0; outline: 0 }
@@ -464,7 +476,10 @@ input.button {
 
 /* Footer */	
 #footer {
+	color: #C6DDEE;
+	background: #CCC url(footer.jpg) no-repeat center top;
 	clear: both;
+	width: 820px;
 	height: 65px;
 	text-align: center;	
 	font-size: 92%;	

@@ -5,13 +5,13 @@
 #
 
 # Your database username
-DBUSER=u684458811_onj
+DBUSER=dbuser
 
 # Your database password
-DBPASS=7XcqLwdt9X
+DBPASS=dbpass
 
 # Database name
-DBNAME=u684458811_onj
+DBNAME=onj
 
 # Contest start time (by default set to 1 minute after you run setup)
 # Format YYYY-MM-DD HH:MM:SS
