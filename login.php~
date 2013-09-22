@@ -242,7 +242,7 @@ else
 
 		<br />	
 		<div style="position: relative; width: 100px; text-align: center; margin-left: auto; margin-right: auto; margin-bottom: 10px">
-			<input id="loginbutton" class="btn btn-success" type="submit" name="login" value="Login" />		
+			<input id="loginbutton" class="button" type="submit" name="login" value="Login" />		
 		</div>
 		</p>		
 

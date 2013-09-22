@@ -1,10 +1,4 @@
 <?php
-
-/*
-* @copyright (c) 2008 Nicolo John Davis
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*/
-
 session_start();
 if(!isset($_SESSION['isloggedin']))
 {
@@ -39,17 +33,46 @@ include('settings.php');
 <script type="text/javascript">
 <!--
 
+function getChat()
+{
+	var chatCount = $("#chat > span").length;
+
+	$.get("getchat.php", {already: chatCount}, function(data){
+		  $("#chat").append(data);
+
+		  if(data != '')
+		  {
+			  var objDiv = document.getElementById("chat");
+			  objDiv.scrollTop = objDiv.scrollHeight;
+		  }
+	  });
+}
+
 $(document).ready(
 	function()
 	{ 
 		dispTime();
 		getLeaders();
 		getDetails();
-		getScores();
+		getChat();
 		setInterval("dispTime()", 1000);  
 		setInterval("getLeaders()", getLeaderInterval);  
 		setInterval("getDetails()", getLeaderInterval);  
-		setInterval("getScores()", getLeaderInterval);  
+		setInterval("getChat()", getChatInterval);  
+
+		$(".chatform").focus();
+		$(".chatform").keypress( function(e) {
+			if(e.which == 13)
+			{
+				var msg = this.value;
+				this.value = "";
+
+				//$.post("submitchat.php", { message: msg }, function(data){ getChat(); }); This was causing duplication
+
+				if(msg != "") //To prevent empty line messages
+					$.post("submitchat.php", { message: msg });
+			}
+		});
 	} 
 );
 
@@ -58,21 +81,22 @@ $(document).ready(
 	
 </head>
 
-<body class="menu4">
+<body class="menu6">
 <!-- wrap starts here -->
 <div id="wrap">
 		
 		<!--header -->
-		<?php include('header.php'); ?>
-		
+		<?php require_once('header.php'); ?>
 			
 		<!-- content-wrap starts here -->
 		<div id="content-wrap">
 				
 			<div id="main">
 				
-				<table id="scores"> </table>
-				
+				<div id="chat"> </div>
+
+				<input maxlength="60" class="chatform" type="text" placeholder="Type in something here" />
+
 			</div>
 			
 			<div id="sidebar">
