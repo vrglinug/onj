@@ -57,9 +57,9 @@ if ext not in ["c", "cpp", "java", "cs", "py", "rb", "php"]:
 
 # Extend this for added language support
 if(ext == "cpp"):
-	compile = "g++ -lm %s -o %s 2> /dev/null" % (sourcefile, path + "/a.out")
+	compile = "g++  %s -lm -o %s 2> /dev/null" % (sourcefile, path + "/a.out")
 elif(ext == "c"):
-	compile = "gcc -lm %s -o %s 2> /dev/null" % (sourcefile, path + "/a.out")
+	compile = "gcc  %s -lm -o %s 2> /dev/null" % (sourcefile, path + "/a.out")	#Math library error fixed
 elif(ext == "java"):
 	compile = "javac %s 2> /dev/null" % (sourcefile)
 elif(ext == "cs"):
