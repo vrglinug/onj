@@ -139,10 +139,15 @@ if(isset($_SESSION['username']))
 {
 	$cn = mysql_connect('localhost', $DBUSER, $DBPASS);
 	mysql_select_db($DBNAME, $cn);
+	
 	$username = $_SESSION['username'];
 	$password = $_SESSION['password'];
 
+	$username =  mysql_real_escape_string($username);
+	$password =  mysql_real_escape_string($password);
+	
 	$query = "select * from `users` where `username` = '$username' and `password` = '$password'";
+	
 	$logged = mysql_query($query);
 	$logged = mysql_fetch_array($logged);
 	mysql_close($cn);
