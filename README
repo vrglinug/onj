@@ -29,3 +29,31 @@ HOW TO CHANGE SETTINGS AFTER INITIAL SETUP
 ADMIN ACCOUNT
 ==================================================
 The admin account is 'admin' with password 'onj'. To change the password, either manually do it in the database (ugly) or edit the dbinit.sql file before running setup
+==================================================
+
+ADDING SECURITY FEATURE
+While setting up onj using apache server, prevent access to files/directories by following these instructions:
+
+Open the file /etc/apache2/apache2.conf
+
+Insert the following lines of code:
+
+<Directory /var/www/html/onj/problems>
+  Order Deny,Allow
+  Deny from all
+</Directory>
+
+
+<Directory /var/www/html/onj/code>
+  Order Deny,Allow
+  Deny from all
+</Directory>
+
+
+<Directory /var/www/html/onj/admin>
+  Order Deny,Allow
+  Deny from all
+</Directory>
+
+==================================================
+
